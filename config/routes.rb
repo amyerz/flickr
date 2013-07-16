@@ -1,9 +1,14 @@
 Flickr::Application.routes.draw do
 
-  resources :photos
   get '/albums/:album_id/new_photo', to: 'photos#new', as: 'album_new_photo'
 
-  resources :albums
+  resources :photos do
+    resources :comments
+  end
+
+  resources :albums do
+    resources :comments
+  end
 
 
 
