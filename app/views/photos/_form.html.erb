@@ -1,0 +1,32 @@
+<%= form_for(@photo, :html_options => {:multipart => true}) do |f| %>
+  <% if @photo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
+
+      <ul>
+      <% @photo.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <p>
+      <%= f.label :mvimage %><br />
+      <%= f.file_field :mvimage %>
+    </p>
+
+  </div>
+  <div class="field">
+    <% if (@album_id) %>
+      <%= f.hidden_field :album_id, :value => @album_id %>
+    <% else %>
+      <%= f.label :album_id %><br />
+      <%= f.number_field :album_id %>
+    <% end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
